@@ -1,0 +1,6 @@
+- Name: Example
+  Version: 1.0.0
+  DLL: bin/Debug/net452/Example.dll
+  Dependencies:
+    - Name: Everest
+      Version: 1.0.0
