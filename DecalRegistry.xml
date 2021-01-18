@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- https://github.com/EverestAPI/Resources/wiki/Decal-Registry -->
+<decals>
+	<decal path="exampleDecal/relative/to/Gameplay/decals">
+		<banner amplitude="2" sliceSize="1" speed="2" sliceSinIncrement="0.05" easeDown="false" offset="-2" />
+		<floaty/>
+		<smoke inbg="true" offsetX="1" offsetY="-5.0" />
+		<parralax amount="0.5" />
+		<depth value="10000" />
+		<animationSpeed value="3" />
+		<sound event="" />
+		<bloom amplitude="2" sliceSize="1" speed="2" sliceSinIncrement="0.05" easeDown="false" offset="-2" />
+		<coreSwap hotPath="" coldPath="" />
+		<solid x="-4" y="-4" width="8" height="8" index="3" />
+		<staticMover x="-6" y="-6" width="12" height="12" />
+		<scared hideRange="16" showRange="20" idleFrames="0-1" hideFrames="3-5,9" hiddenFrames="6*8,7" showFrames="8" />
+		<light color="FF0000" startFade="16" endFade="24" />	
+	</decal>
+</decals>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Sprites>
+	<!--
+	Any sprites added to this file (NOT Graphics/Sprites.xml) will NOT be merged with the vanilla SpriteBank.
+	-->
+	<!--
+	<exampleModuleSprite>
+	</exampleModuleSprite>
+	-->
+</Sprites>

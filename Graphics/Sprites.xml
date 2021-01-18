@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Sprites>
+    <!--
+        Any sprites added to this file (Graphics/Sprites.xml) will be automatically merged with the vanilla Game SpriteBank.
+        Sprite definitions that conflict will override existing ones, which is NOT RECCOMMENDED.
+
+        SpriteBanks that are defined in other files will not be automatically merged, but must be loaded and used separately from the GFX.Game SpriteBank.
+    -->
+    <!--
+        <exampleModuleSprite>
+        </exampleModuleSprite>
+    -->
+</Sprites>
