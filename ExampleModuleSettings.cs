@@ -1,4 +1,6 @@
-﻿using YamlDotNet.Serialization;
+﻿// https://github.com/EverestAPI/Resources/wiki/Your-First-Code-Mod#mod-settings-session-and-save-data
+
+using YamlDotNet.Serialization;
 
 namespace Celeste.Mod.Example {
     // If no SettingName is applied, it defaults to
@@ -20,7 +22,7 @@ namespace Celeste.Mod.Example {
         [SettingRange(0, 10)] // Allow choosing a value from 0 (inclusive) to 10 (inclusive).
         public int ExampleSlider { get; set; } = 5;
 
-        [SettingRange(0, 10)]
+        [SettingRange(0, 100, largeRange: true)] // Setting largeRange to true makes this use the more efficient IntSlider
         [SettingInGame(false)] // Only show this in the main menu.
         public int ExampleMainMenuSlider { get; set; } = 5;
 
@@ -43,6 +45,9 @@ namespace Celeste.Mod.Example {
         // Max length defaults to 12 if the attribute is not set.
         [SettingMaxLength(40)]
         public string ExampleString { get; set; } = "test";
+
+        [SettingNumberInput(allowNegatives: false, maxLength: 3)]
+        public float ExampleNumEntry { get; set; } = 15f;
 
         public int SomethingWeird { get; set; } = 42;
 
