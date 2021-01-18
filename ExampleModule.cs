@@ -1,4 +1,6 @@
-﻿using System;
+﻿// https://github.com/EverestAPI/Resources/wiki/Your-First-Code-Mod#module-class
+
+using System;
 
 namespace Celeste.Mod.Example {
     public class ExampleModule : EverestModule {
@@ -27,6 +29,7 @@ namespace Celeste.Mod.Example {
         // Set up any hooks, event handlers and your mod in general here.
         // Load runs before Celeste itself has initialized properly.
         public override void Load() {
+            Hooks.Load();
         }
 
         // Optional, initialize anything after Celeste has initialized itself properly.
@@ -39,6 +42,7 @@ namespace Celeste.Mod.Example {
 
         // Unload the entirety of your mod's content. Free up any native resources.
         public override void Unload() {
+            Hooks.Unload();
         }
 
     }
