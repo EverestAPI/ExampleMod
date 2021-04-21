@@ -4,6 +4,7 @@ using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
 using System;
+using System.Collections;
 using System.Reflection;
 
 namespace Celeste.Mod.Example {
@@ -14,6 +15,9 @@ namespace Celeste.Mod.Example {
 
         public static void Load() {
             On.Celeste.Player.Jump += Player_Jump;
+
+            // Oh. hooking methods that return an `IEnumerator` (used in Coroutines) need some special treatment, see hooking method for details.
+            On.Celeste.Strawberry.CollectRoutine += Strawberry_CollectRoutine;
 
             // Manually construct an On. hook
             // This is useful when the method you're trying to hook isn't parsed by MonoMod.RuntimeDetour.HookGen (it isn't available using the regular method)
@@ -52,6 +56,18 @@ namespace Celeste.Mod.Example {
             orig(self, particles, playSfx);
 
             Logger.Log("ExampleMod", "Just after Player.Jump()");
+        }
+
+        private static IEnumerator Strawberry_CollectRoutine(On.Celeste.Strawberry.orig_CollectRoutine orig, Strawberry self, int collectIndex) {
+            // The vanilla behaviour when returning an IEnumerator *within* a coroutine is to add a frame of delay before and after.
+            // THIS MUST BE AVOIDED WHEN HOOKING COROUTINES.
+            // Everest provides a convenience class, `SwapImmediately`, that removes this delay.
+
+            // This is wrong
+            //yield return orig(self, collectIndex);
+
+            // This is correct
+            yield return new SwapImmediately(orig(self, collectIndex));
         }
 
         // Not required if the orig method is not needed

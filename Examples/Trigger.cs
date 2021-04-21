@@ -7,5 +7,20 @@ namespace Celeste.Mod.Example {
         public ExampleTrigger(EntityData data, Vector2 offset) 
             : base(data, offset) {
         }
+
+        public override void OnEnter(Player player) {
+            base.OnEnter(player);
+        }
+
+        public override void OnStay(Player player) {
+            base.OnStay(player);
+
+            float lerpX = GetPositionLerp(player, PositionModes.HorizontalCenter);
+        }
+
+        public override void OnLeave(Player player) {
+            base.OnLeave(player);
+        }
+
     }
 }
