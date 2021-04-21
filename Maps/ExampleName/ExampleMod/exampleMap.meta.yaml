@@ -1,0 +1,129 @@
+# https://github.com/EverestAPI/Resources/wiki/Map-Metadata
+
+# A complete reference of MapMeta properties can be found in the Everest source:
+# https://github.com/EverestAPI/Everest/blob/dev/Celeste.Mod.mm/Mod/Meta/MapMeta.cs
+# Any properties not included here are available in the Ahorn MapMeta window
+
+# Mountain stuff.
+Mountain:
+    # Map Position on the Mountain.
+
+    Idle: # While the map is selected, but the Chapter Select menu is not open.
+        Position: [ 7.565, 8.614, -5.318 ] # Position of the Camera.
+        Target: [ 6.210, 7.754, -4.125 ] # Point the camera is looking at.
+
+    Select: # While the Chapter Select menu is open
+        Position: [ 8.782, 6.271, -1.953 ]
+        Target: [ 6.799, 6.172, -2.194 ]
+
+    Zoom: # The position the camera zooms towards when you enter the level.
+        Position: [ 6.462, 5.235, -1.605 ]
+        Target: [ 4.542, 5.754, -1.819 ]
+
+    # The location of the Madeline cursor on the mountain
+    Cursor: [ 5.706, 5.492, -1.542 ]
+
+    State: 2 # Defines the lighting of the mountain: 0 is night, 1 is Dawn, 2 is day, 3 is moon.
+
+    ShowCore: false # Whether the Core Heart should be shown on the Mountain.
+
+    Rotate: true # Whether the camera should rotate around the Mountain.
+
+    ShowSnow: false # Setting this to false will turn off the snow that is falling on the mountain, or floating in space.
+
+    # Custom Overworld Music
+    BackgroundMusic: event:/max480/test_music
+    BackgroundAmbience: event:/env/amb/06_lake
+    BackgroundMusicParams:
+      param1: value1
+      param2: value2
+
+    # Custom Mountain Assets
+    MountainModelDirectory: Mountain/yourname/campaignname
+    MountainTextureDirectory: yourname/campaignname
+
+    FogColors:
+      - 010817
+      - 13203E
+      - 281A35
+      - 010817
+    StarFogColor: 020915
+    StarStreamColors:
+      - 000000
+      - 9228e2
+      - 30ffff
+    StarBeltColors1:
+      - 53f3dd
+      - 53c9f3
+    StarBeltColors2:
+      - ab6ffa
+      - fa70ea
+
+# !Only One of LoadingVignetteScreen and LoadingVignetteText can be used per map
+LoadingVignetteScreen:
+    # Uses the same structure as the CompleteScreen
+
+LoadingVignetteText:
+    Dialog: yourDialogHere
+
+# CompleteScreen stuff
+CompleteScreen:
+    Atlas: OldSite
+    Start: [0.0, 1050.0]
+    Center: [0.0, 250.0]
+    Offset: [-108.0, 0.0]
+    Title:
+        ASide: AREACOMPLETE_NORMAL # A-side complete ("Chapter Complete")
+        BSide: AREACOMPLETE_BSIDE # B-side complete ("B-Side Complete")
+        CSide: AREACOMPLETE_CSIDE # C-side complete ("C-Side Complete")
+        FullClear: AREACOMPLETE_NORMAL_FULLCLEAR # A-side full clear ("Chapter Clear")
+    MusicBySide:
+      - event:/music/menu/complete_area # A-side
+      - event:/music/menu/complete_bside # B-side
+      - event:/music/menu/complete_bside # C-side
+    Layers:
+      - Type: layer
+        Images: ['00']
+        Position: [0.0, 0.0]
+        Scroll: [0]
+      - Type: layer
+        Images: ['01']
+        Position: [0.0, 0.0]
+        Scroll: [0.02]
+      - Type: layer
+        Images: ['02']
+        Position: [0.0, 0.0]
+        Scroll: [0.04]
+      - Type: layer
+        Images: ['03']
+        Position: [0.0, 0.0]
+        Scroll: [0.06]
+      - Type: layer
+        Images: ['04']
+        Position: [0.0, 0.0]
+        Scroll: [0.10]
+      - Type: layer
+        Images: ['05']
+        Position: [0.0, 0.0]
+        Scroll: [0.10]
+      - Type: layer
+        Images: ['06']
+        Position: [0.0, -20.0]
+        Scroll: [0.11]
+      - Type: layer
+        Images: ['07']
+        Position: [0.0, 0.0]
+        Scroll: [0.12]
+      - Type: ui # The UI layer is required to display the "Chapter Complete" text.
+      - Type: layer
+        Images: ['08']
+        Position: [0.0, -680.0]
+        Scroll: [0.13]
+      - Type: layer
+        Images: ['09']
+        Position: [0.0, 0.0]
+        Scroll: [0.13]
+      - Type: layer
+        Images: ['10']
+        Position: [0.0, -680.0]
+        Scroll: [0.15]
