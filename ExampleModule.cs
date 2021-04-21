@@ -1,5 +1,6 @@
 ﻿// https://github.com/EverestAPI/Resources/wiki/Your-First-Code-Mod#module-class
 
+using Monocle;
 using System;
 
 namespace Celeste.Mod.Example {
@@ -11,9 +12,7 @@ namespace Celeste.Mod.Example {
             Instance = this;
         }
 
-        // Check the next section for more information about mod settings, save data and session.
-        // Those are optional: if you don't need one of those, you can remove it from the module.
-
+        // Settings, SaveData, and Session are optional
         // If you need to store settings:
         public override Type SettingsType => typeof(ExampleModuleSettings);
         public static ExampleModuleSettings Settings => (ExampleModuleSettings) Instance._Settings;
@@ -25,6 +24,9 @@ namespace Celeste.Mod.Example {
         // If you need to store session data:
         public override Type SessionType => typeof(ExampleModuleSession);
         public static ExampleModuleSession Session => (ExampleModuleSession) Instance._Session;
+
+        // Initialized in LoadContent, after graphics and other assets have been loaded.
+        public SpriteBank ExampleSpriteBank;
 
         // Set up any hooks, event handlers and your mod in general here.
         // Load runs before Celeste itself has initialized properly.
@@ -38,6 +40,9 @@ namespace Celeste.Mod.Example {
 
         // Optional, do anything requiring either the Celeste or mod content here.
         public override void LoadContent(bool firstLoad) {
+            // This creates a new spritebank from an xml file.
+            // This particular one uses textures from the Gameplay atlas, which is stored in GFX.Game
+            ExampleSpriteBank = new SpriteBank(GFX.Game, "ExampleMod/ExampleSprites.xml");
         }
 
         // Unload the entirety of your mod's content. Free up any native resources.

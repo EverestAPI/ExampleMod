@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!-- https://github.com/EverestAPI/Resources/wiki/Adding-Sprites -->
 <Sprites>
     <!--
         Any sprites added to this file (Graphics/Sprites.xml) will be automatically merged with the vanilla Game SpriteBank.
@@ -6,8 +7,14 @@
 
         SpriteBanks that are defined in other files will not be automatically merged, but must be loaded and used separately from the GFX.Game SpriteBank.
     -->
-    <!--
-        <exampleModuleSprite>
-        </exampleModuleSprite>
-    -->
+    <exampleModSprite path="path/from/Graphics" start="initialAnimationID">
+        <!-- If you want it centered -->
+	    <Center/>
+
+	    <!-- This animation will loop until changed -->
+	    <Loop id="loopID" path="texturename" delay="0.15"/>
+
+	    <!-- This animation will play once -->
+	    <Anim id="animID" path="othertexturename" delay="0.08" frames="3,7-9"/>
+	</exampleModSprite>
 </Sprites>

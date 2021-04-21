@@ -1,5 +1,6 @@
 ﻿// https://github.com/EverestAPI/Resources/wiki/Your-First-Code-Mod#mod-settings-session-and-save-data
 
+using Microsoft.Xna.Framework.Input;
 using YamlDotNet.Serialization;
 
 namespace Celeste.Mod.Example {
@@ -48,6 +49,9 @@ namespace Celeste.Mod.Example {
 
         [SettingNumberInput(allowNegatives: false, maxLength: 3)]
         public float ExampleNumEntry { get; set; } = 15f;
+
+        [DefaultButtonBinding(Buttons.A, Keys.A)]
+        public ButtonBinding ExampleButton { get; set; }
 
         public int SomethingWeird { get; set; } = 42;
 
