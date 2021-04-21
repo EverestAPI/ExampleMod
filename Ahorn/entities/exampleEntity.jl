@@ -24,14 +24,14 @@ All attributes other than x and y must be given a default value.
 Allowed attribute types (ones that won't break the map parser) include:
     String, Bool, Char, Int, Float
 =#
-@mapdef Entity "ExampleMod/ExampleEntity2" Example2(x::Number, y::Number, width::Number=16, height::Number=16, nodes::Tuple{Int, Int}[]=[(0,0)], attrib::Bool=false)
+@mapdef Entity "ExampleMod/ExampleEntity2" Example2(x::Number, y::Number, width::Number=16, height::Number=16, nodes::Vector{Tuple{Int, Int}}=[(0,0)], attrib::Bool=false)
 #= equivalent to: 
-    @pardef Example2(x::Number, y::Number, width::Number=16, height::Number=16, nodes::Tuple{Int, Int}[]=[(0,0)], attrib::Bool=false) = 
+    @pardef Example2(x::Number, y::Number, width::Number=16, height::Number=16, nodes::Vector{Tuple{Int, Int}}=[(0,0)], attrib::Bool=false) = 
         Entity("ExampleMod/ExampleEntity", x=x, y=y, width=width, height=height, nodes=nodes, attrib=attrib)
 =#
 #= evaluates to:
     const Example2 = Entity{Symbol("ExampleMod/ExampleEntity2")}
-    Example2(x::Number, y::Number, width::Number = 16, height::Number = 16, nodes::Tuple{Int, Int}[] = [(0, 0)], attrib::Bool = false) = 
+    Example2(x::Number, y::Number, width::Number = 16, height::Number = 16, nodes::Vector{Tuple{Int, Int}} = [(0, 0)], attrib::Bool = false) = 
         Entity{Symbol("ExampleMod/ExampleEntity2")}("ExampleMod/ExampleEntity2", x = x, y = y, width = width, height = height, nodes = nodes, attrib = attrib)
 =#
 
@@ -56,16 +56,16 @@ render is relative to `Ahorn.position(entity)`, renderAbs is relative to 0,0
 Drawing helper methods provided by Ahorn can be found here:
 https://github.com/CelestialCartographers/Ahorn/blob/12f6ac29677dc1f3c05b468bd205b757cbd4ec1e/src/drawing.jl#L223
 =#
-Ahorn.render(ctx::Cairo.CairoContext, entity::Example) = false
-Ahorn.render(ctx::Cairo.CairoContext, entity::Example, room::Room) = false
-Ahorn.renderAbs(ctx::Cairo.CairoContext, entity::Example) = false
-Ahorn.renderAbs(ctx::Cairo.CairoContext, entity::Example, room::Room) = false
+Ahorn.render(ctx::Ahorn.Cairo.CairoContext, entity::Example) = false
+Ahorn.render(ctx::Ahorn.Cairo.CairoContext, entity::Example, room::Room) = false
+Ahorn.renderAbs(ctx::Ahorn.Cairo.CairoContext, entity::Example) = false
+Ahorn.renderAbs(ctx::Ahorn.Cairo.CairoContext, entity::Example, room::Room) = false
 
 # Render the entity while it is selected.
-Ahorn.renderSelected(ctx::Cairo.CairoContext, entity::Example) = false
-Ahorn.renderSelected(ctx::Cairo.CairoContext, entity::Example, room::Maple.Room) = false
-Ahorn.renderSelectedAbs(ctx::Cairo.CairoContext, entity::Example) = false
-Ahorn.renderSelectedAbs(ctx::Cairo.CairoContext, entity::Example, room::Maple.Room) = false
+Ahorn.renderSelected(ctx::Ahorn.Cairo.CairoContext, entity::Example) = false
+Ahorn.renderSelected(ctx::Ahorn.Cairo.CairoContext, entity::Example, room::Maple.Room) = false
+Ahorn.renderSelectedAbs(ctx::Ahorn.Cairo.CairoContext, entity::Example) = false
+Ahorn.renderSelectedAbs(ctx::Ahorn.Cairo.CairoContext, entity::Example, room::Maple.Room) = false
 
 #=
 Describe the selection box for your entity.
