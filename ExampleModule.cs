@@ -31,7 +31,14 @@ namespace Celeste.Mod.Example {
         // Set up any hooks, event handlers and your mod in general here.
         // Load runs before Celeste itself has initialized properly.
         public override void Load() {
+            // SetLogLevel will set the *minimum* log level that will be written for logs that use the given prefix string.
+            Logger.SetLogLevel("ExampleModule", LogLevel.Verbose);
+            Logger.Log(LogLevel.Info, "ExampleModule", "Loading ExampleModule Hooks");
+            // The default LogLevel when using Logger.Log is Verbose.
+            Logger.Log(LogLevel.Verbose, "ExampleModule", "This line would not be logged with SetLogLevel LogLevel.Info");
+
             Hooks.Load();
+            ExtendedDashBlock.Load();
         }
 
         // Optional, initialize anything after Celeste has initialized itself properly.
@@ -48,6 +55,7 @@ namespace Celeste.Mod.Example {
         // Unload the entirety of your mod's content. Free up any native resources.
         public override void Unload() {
             Hooks.Unload();
+            ExtendedDashBlock.Unload();
         }
 
     }

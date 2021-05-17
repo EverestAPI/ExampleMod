@@ -13,7 +13,7 @@ namespace Celeste.Mod.Example {
         private static IDetour hook_Player_get_MaxDashes;
         private static IDetour hook_Player_DashCoroutine;
 
-        public static void Load() {
+        internal static void Load() {
             On.Celeste.Player.Jump += Player_Jump;
 
             // Oh. hooking methods that return an `IEnumerator` (used in Coroutines) need some special treatment, see hooking method for details.
@@ -41,7 +41,7 @@ namespace Celeste.Mod.Example {
         }
 
         // Any hooks you apply should be undone during your EverestModule's Unload function.
-        public static void Unload() {
+        internal static void Unload() {
             On.Celeste.Player.Jump -= Player_Jump;
             hook_Player_get_MaxDashes.Dispose();
 

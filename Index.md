@@ -16,9 +16,13 @@ Reflection
 DynData
 
 [Tracker](./Examples/Tracker.cs) (retrieving entities from the scene)
+
 Session Flags
 
 [Custom Entity](./Examples/Entity.cs)  
+- [Extending an existing Entity](./Examples/ExtendingVanilla.cs)
+- [Tracking an entity as another](./Examples/ExtendingVanilla.cs)
+
 [Custom Trigger](./Examples/Trigger.cs)  
 [Custom Component](./Examples/Component.cs)  
 [Custom Cutscene](./Examples/Cutscene.cs)  
@@ -31,7 +35,7 @@ Ahorn
 - [Entity](./Ahorn/entities/exampleEntity.jl)
 - [Trigger](./Ahorn/triggers/exampleTrigger.jl)
 - [Library](./Ahorn/libraries/exampleLibrary.jl)
-- [Effect](./Ahorn/effects/exampleEffects.jl)
+- [Effect](./Ahorn/effects/exampleEffect.jl)
 - [Tool](./Ahorn/tools/exampleTool.jl)
 - [Lang](./Ahorn/lang/en_gb.lang)
 
