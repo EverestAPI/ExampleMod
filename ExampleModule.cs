@@ -49,7 +49,7 @@ namespace Celeste.Mod.Example {
         public override void LoadContent(bool firstLoad) {
             // This creates a new spritebank from an xml file.
             // This particular one uses textures from the Gameplay atlas, which is stored in GFX.Game
-            ExampleSpriteBank = new SpriteBank(GFX.Game, "ExampleMod/ExampleSprites.xml");
+            ExampleSpriteBank = new SpriteBank(GFX.Game, "Graphics/ExampleMod/ExampleSprites.xml");
         }
 
         // Unload the entirety of your mod's content. Free up any native resources.
