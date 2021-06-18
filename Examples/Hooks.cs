@@ -1,5 +1,6 @@
 ﻿// https://github.com/EverestAPI/Resources/wiki/Your-First-Code-Mod#modifying-the-games-code
 
+using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 using MonoMod.Utils;
@@ -88,15 +89,35 @@ namespace Celeste.Mod.Example {
                 // - Greater compatibility with other mods:
                 // If another mod adds the same delegate in the same location it will not break, since the string will get passed to each delegate in sequence.
                 cursor.EmitDelegate<Func<string, string>>(str => {
-                    if (false)
+                    if (ExampleModule.Settings.ExampleSwitch)
                         return "different event";
                     return str;
+                });
+            }
+
+            // If you are hooking a non-static method and you need a reference to "this", you can load it before emitting your delegate:
+            if (cursor.TryGotoNext(instr => instr.MatchCallvirt<Player>("Play"))) {
+                cursor.Emit(OpCodes.Ldarg_0);
+                cursor.EmitDelegate<Action<Player>>(p => {
+                    if (p.SceneAs<Level>().Session.GetFlag("examplemod_testFlag"))
+                        p.Play("additional sound");
                 });
             }
         }
 
         private static void Player_DashCoroutine(ILContext il) {
+            ILCursor cursor = new ILCursor(il);
 
+            // Since Iterator methods are stored in a separate, compiler-generated type, we don't have direct access to "this".
+            // Instead we have to load it from the field stored in the compiler-generated type.
+            if (cursor.TryGotoNext(instr => instr.MatchCallvirt<Player>("CallDashEvents"))) {
+                cursor.Emit(OpCodes.Ldarg_0);
+                cursor.Emit(OpCodes.Ldfld, typeof(Player).GetMethod("DashCoroutine", BindingFlags.NonPublic | BindingFlags.Instance).GetStateMachineTarget().DeclaringType.GetField("<>4__this"));
+                cursor.EmitDelegate<Action<Player>>(p => {
+                    if (p.StateMachine.State == Player.StIntroWalk)
+                        p.StateMachine.State = Player.StNormal;
+                });
+            }
         }
 
     }
