@@ -6,6 +6,7 @@
     <AssemblyName>Example</AssemblyName>
     <RootNamespace>Celeste.Mod.Example</RootNamespace>
     <LangVersion>7.3</LangVersion>
+    <CelesteGamePath Condition="'$(CELESTEGAMEPATH)' == ''">..\..</CelesteGamePath>
   </PropertyGroup>
 
   <!--Disable "Copy Local" for all references-->
@@ -20,9 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Celeste" HintPath="..\..\Celeste.exe" />
-    <Reference Include="MMHOOK_Celeste" HintPath="..\..\MMHOOK_Celeste.dll" />
-    <Reference Include="YamlDotNet" HintPath="..\..\YamlDotNet.dll" />
+    <Reference Include="Celeste" HintPath="$(CELESTEGAMEPATH)\Celeste.exe" />
+    <Reference Include="MMHOOK_Celeste" HintPath="$(CELESTEGAMEPATH)\MMHOOK_Celeste.dll" />
+    <Reference Include="YamlDotNet" HintPath="$(CELESTEGAMEPATH)\YamlDotNet.dll" />
   </ItemGroup>
 
   <Choose>
