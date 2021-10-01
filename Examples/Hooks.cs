@@ -103,6 +103,31 @@ namespace Celeste.Mod.Example {
                         p.Play("additional sound");
                 });
             }
+
+            cursor.Index = 0; //Back to the top of the method
+
+            if (cursor.TryGotoNext(MoveType.After,
+                instr => instr.MatchLdfld<Player>("climbHopSolid"),
+                instr => instr.MatchBrfalse(out ILLabel _))) {
+                // When emitting `br_` instructions, ILLabels can be used to make the patch more "linear"
+
+                // Without ILLabels:
+                if (cursor.TryFindNext(out ILCursor[] matches, instr => instr.MatchStfld<Player>("hopWaitXSpeed"))) {
+                    // We need to search ahead to find the instruction before we can emit the instruction
+                    Instruction target = matches[0].Next;
+                    cursor.Emit(OpCodes.Br, target);
+                }
+
+                // With ILLabels:
+                // We can emit the instruction with an empty ILLabel,
+                // then move to the target and use MarkLabel with the empty ILLabel to assign it.
+                ILLabel targetL = cursor.DefineLabel();
+                cursor.Emit(OpCodes.Br, targetL);
+                cursor.GotoNext(
+                    instr => instr.MatchStfld<Player>("hopWaitXSpeed")
+                ).MarkLabel(targetL);
+            }
+
         }
 
         private static void Player_DashCoroutine(ILContext il) {

@@ -10,6 +10,8 @@ SpriteBanks
 [Hooks](./Examples/Hooks.cs)
 - On. and IL. hooks
 - Manually constructing hooks
+- Hooking Coroutines (On. and IL.)
+- Using ILLabels in IL. hooks
 
 Reflection
 
