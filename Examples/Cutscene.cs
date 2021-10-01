@@ -28,7 +28,8 @@ namespace Celeste.Mod.Example {
             yield return player.DummyWalkTo(CutsceneNode.Find("ExampleMod/CustomEventNode1").X, true);
             // returning an int or float will cause the Coroutine to pause for that many seconds before resuming.
             yield return 2;
-            if (false)
+            bool test = false;
+            if (test)
                 // Use yield break to exit from an Iterator Method early.
                 yield break;
             player.StateMachine.State = Player.StNormal;
