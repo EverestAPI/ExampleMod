@@ -8,11 +8,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Parse Everest Dependency
+      run: |
+        EVERESTDEP=$(sed -n -e '/Everest$/{n;s/Version: //;p}' everest.yaml | xargs)
+        echo "EVERESTDEP=$EVERESTDEP" >> $GITHUB_ENV
+
     - name: Download Everest stripped lib
       uses: robinraju/release-downloader@v1.2
       with:
         repository: EverestAPI/Everest
-        tag: stable-1.3164.0
+        tag: stable-${{ env.EVERESTDEP }}
         fileName: lib-stripped.zip
      
     - name: Extract lib-stripped.zip
