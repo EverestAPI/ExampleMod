@@ -10,7 +10,7 @@ jobs:
 
     - name: Parse Everest Dependency
       run: |
-        EVERESTDEP=$(sed -n -e '/Everest$/{n;s/Version: //;p}' everest.yaml | xargs)
+        EVERESTDEP=$(yq -r '.[0].Dependencies[] | select(.Name == "Everest").Version' everest.yaml)
         echo "EVERESTDEP=$EVERESTDEP" >> $GITHUB_ENV
 
     - name: Download Everest stripped lib
