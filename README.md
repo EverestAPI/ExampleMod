@@ -1,3 +1,5 @@
+[![Build](https://github.com/EverestAPI/ExampleMod/actions/workflows/autobuild.yml/badge.svg)](https://github.com/EverestAPI/ExampleMod/actions/workflows/autobuild.yml)
+
 __The purpose of this mod is to provide a comprehensive example of an Everest code mod.__
 
 The goal is to show and document every feature that is available for code modders, provided that it is not already covered in general-purpose language and framework tutorials.

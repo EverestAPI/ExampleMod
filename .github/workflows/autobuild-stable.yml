@@ -1,0 +1,43 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Parse Everest Dependency
+      run: |
+        EVERESTDEP=$(yq eval '.[0].Dependencies[] | select(.Name == "Everest").Version' -- everest.yaml)
+        echo "EVERESTDEP=$EVERESTDEP" >> $GITHUB_ENV
+
+    - name: Download Everest stripped lib
+      uses: robinraju/release-downloader@v1.2
+      with:
+        repository: EverestAPI/Everest
+        tag: stable-${{ env.EVERESTDEP }}
+        fileName: lib-stripped.zip
+     
+    - name: Extract lib-stripped.zip
+      run: unzip lib-stripped.zip
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+
+    - name: Restore with .NET Core
+      run: dotnet restore
+
+    - name: Build with .NET Core
+      run: dotnet build "/p:Configuration=Debug"
+      env:
+        CELESTEGAMEPATH: ${{ github.workspace }}/lib-stripped
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: main
+        path: bin/Debug/net452
