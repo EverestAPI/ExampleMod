@@ -27,9 +27,9 @@
   </ItemGroup>
 
   <Choose>
-    <When Condition="'$(OS)' != 'Windows_NT' Or Exists('..\..\FNA.dll')">
+    <When Condition="'$(OS)' != 'Windows_NT' Or Exists('$(CELESTEGAMEPATH)\FNA.dll')">
       <ItemGroup>
-        <Reference Include="FNA" HintPath="..\..\FNA.dll" />
+        <Reference Include="FNA" HintPath="$(CELESTEGAMEPATH)\FNA.dll" />
       </ItemGroup>
     </When>
 
