@@ -114,6 +114,7 @@ namespace Celeste.Mod.Example {
                 // Without ILLabels:
                 if (cursor.TryFindNext(out ILCursor[] matches, instr => instr.MatchStfld<Player>("hopWaitXSpeed"))) {
                     // We need to search ahead to find the instruction before we can emit the instruction
+                    matches[0].Index++; // We want to jump to after the instruction
                     Instruction target = matches[0].Next;
                     cursor.Emit(OpCodes.Br, target);
                 }
@@ -124,7 +125,7 @@ namespace Celeste.Mod.Example {
                 ILLabel targetL = cursor.DefineLabel();
                 cursor.Emit(OpCodes.Br, targetL);
                 cursor.GotoNext(
-                    instr => instr.MatchStfld<Player>("hopWaitXSpeed")
+                    MoveType.After, instr => instr.MatchStfld<Player>("hopWaitXSpeed")
                 ).MarkLabel(targetL);
             }
 
