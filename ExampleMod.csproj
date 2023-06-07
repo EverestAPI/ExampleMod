@@ -14,9 +14,10 @@
 	</PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Celeste" HintPath="$(CelesteGamePath)\Celeste.exe" Private="false" />
-    <Reference Include="MMHOOK_Celeste" HintPath="$(CelesteGamePath)\MMHOOK_Celeste.dll" Private="false" />
-    <Reference Include="YamlDotNet" HintPath="$(CelesteGamePath)\YamlDotNet.dll" Private="false" />
+    <Reference Include="$(CelesteGamePath)\Celeste.exe" Private="false"/>
+    <Reference Include="$(CelesteGamePath)\MMHOOK_Celeste.dll" />
+    <Reference Include="$(CelesteGamePath)\YamlDotNet.dll" />
+    <Reference Update="$(CelesteGamePath)\*.dll" Private="false" />
   </ItemGroup>
 
 	<ItemGroup>
