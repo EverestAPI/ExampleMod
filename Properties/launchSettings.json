@@ -1,0 +1,9 @@
+{
+    "profiles": {
+        "Celeste": {
+            "commandName": "Executable",
+            "executablePath": "$(CelesteGamePath)/Celeste.exe",
+            "workingDirectory": "$(CelesteGamePath)"
+        }
+    }
+}
